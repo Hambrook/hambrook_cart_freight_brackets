@@ -1,0 +1,1 @@
+Allows shipping to be selected from pre-set brackets based on the cart total and region.

@@ -16,11 +16,8 @@ class Jojo_Plugin_hambrook_cart_freight_brackets extends Jojo_Plugin {
 
     /* Set custom shipping cost */
     public function set_shipping($total, $cart) {
-        // Update later to have per region brackets?
-        //$method = $cart->fields['shippingMethod'];
-
         $brackets = Jojo::selectQuery(
-            "SELECT * FROM {cart_freightbracket} WHERE fb_group = (SELECT freightbracketgroup FROM {cart_region} WHERE regioncode = ?)",
+            "SELECT * FROM {cart_freightbracket} WHERE fb_group = (SELECT freightbracketgroup FROM {cart_region} WHERE regioncode = ?) ORDER BY fb_minvalue ASC",
             $cart->fields['shippingRegion']
         );
         if (!$brackets) {
